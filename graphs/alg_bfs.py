@@ -39,6 +39,10 @@ def bfs_iterative(graph, start_vertex, end_vertex=None) -> list:
         # neighbors = graph.get(current_vertex, [])
         neighbors = graph[current_vertex]
         for neighbor in neighbors:
+            # якщо end_vertex це сусід, або серед сусідів цього сусіда
+            if end_vertex and (end_vertex == neighbor or end_vertex in graph[neighbor]):
+                # ставимо такого сусіда першим в чергу
+                queue.appendleft(neighbor)
             if neighbor not in visited and neighbor not in queue:
                 queue.append(neighbor)
 
@@ -59,3 +63,10 @@ if __name__ == "__main__":
     # Запуск алгоритму BFS
     print(f"{bfs_iterative(graph, 'A') = }")
     print(f"{bfs_iterative(graph, 'A', 'D') = }")
+
+    import matplotlib.pyplot as plt
+    import networkx as nx
+
+    pos = nx.spring_layout(graph)  # shell_layout(graph)
+    nx.draw(nx.Graph(graph), with_labels=True)
+    plt.show()

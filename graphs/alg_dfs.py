@@ -49,3 +49,9 @@ if __name__ == "__main__":
     # Виклик функції DFS
     print(f"{dfs_iterative(graph, 'A') = }")
     print(f"{dfs_iterative(graph, 'A','F') = }")
+
+    import matplotlib.pyplot as plt
+    import networkx as nx
+
+    nx.draw(nx.Graph(graph), with_labels=True)
+    plt.show()

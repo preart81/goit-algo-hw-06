@@ -70,4 +70,11 @@ if __name__ == "__main__":
     print(f"{graph = }")
 
     print(f"{dijkstra(graph, 'A') = }")
+    print(f"{dijkstra(graph, 'A', 'D') = }")
     print(f"{dijkstra(graph, 'A', 'E') = }")
+
+    import matplotlib.pyplot as plt
+    import networkx as nx
+
+    nx.draw(nx.Graph(graph), with_labels=True)
+    plt.show()
