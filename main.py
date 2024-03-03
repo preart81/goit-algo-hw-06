@@ -155,7 +155,7 @@ for station, closeness in top_closeness_stations:
 # Ступінь (Degree)
 degrees = dict(G.degree())
 print()
-print("Станції з навищим ступенем:")
+print("Станції з найвищим ступенем:")
 for node, degree in degrees.items():
     if degree > 2:
         print(f"Станція {node:.<28}{degree}")
@@ -171,14 +171,14 @@ start_station = "Театральна"
 end_station = "Арсенальна"
 # ---------------- Пошук у глибину (DFS) ------------------
 print()
-print(f"Пошук у глибину (DFS) для початкової станції {start_station}:")
+print(f"Пошук у глибину (DFS) між станціями {start_station} і {end_station}:")
 
 dfs = dfs_iterative(G, start_station, end_station)
 print(f"Відвідано станцій: {len(dfs)}, Відвідані станції DFS: \n{dfs}")
 
 # ---------------- Пошук в ширину (BFS) ------------------
 print()
-print(f"Пошук в ширину (BFS) для початкової станції {start_station}:")
+print(f"Пошук в ширину (BFS) між станціями {start_station} і {end_station}:")
 
 bfs = bfs_iterative(G, start_station, end_station)
 print(f"Відвідано станцій: {len(bfs)}, Відвідані станції BFS: \n{bfs}")
@@ -202,4 +202,4 @@ print(
 )
 
 
-# plt.show()
+plt.show()

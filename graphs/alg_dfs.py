@@ -48,3 +48,4 @@ if __name__ == "__main__":
 
     # Виклик функції DFS
     print(f"{dfs_iterative(graph, 'A') = }")
+    print(f"{dfs_iterative(graph, 'A','F') = }")

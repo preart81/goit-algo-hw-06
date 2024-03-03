@@ -12,33 +12,36 @@ def bfs_iterative(graph, start_vertex, end_vertex=None) -> list:
     """
     Ітеративний пошук в ширину BFS
 
-    параметри:
+    Параметри:
         graph: dict
             граф;
-        start: Any
+        start_vertex: Any
             початкова вершина
-    Повертає:
-        visited - відвідані вершини в порядку відвідування.
-    """
-    # Ініціалізація порожньої множини для зберігання відвіданих вершин
-    visited = list()
-    # Ініціалізація черги з початковою вершиною
-    queue = deque([start_vertex])
+        end_vertex: Any, optional
+            кінцева вершина, за замовчуванням None
 
-    # Поки черга не порожня, продовжуємо обхід
-    while queue and end_vertex not in visited:
-        # Вилучаємо першу вершину з черги
-        vertex = queue.popleft()
-        # Перевіряємо, чи була вершина відвідана раніше
-        if vertex not in visited:
-            # Якщо не була відвідана, друкуємо її
-            # print(vertex, end=" ") # DEBUG
-            # Додаємо вершину до множини відвіданих вершин
-            visited.append(vertex)
-            # Додаємо всіх невідвіданих сусідів вершини до кінця черги
-            # Операція різниці множин вилучає вже відвідані вершини зі списку сусідів
-            queue.extend(set(graph[vertex]) - set(visited))
-    # Повертаємо множину відвіданих вершин після завершення обходу
+    Повертає:
+        visited: list
+            відвідані вершини в порядку відвідування.
+    """
+    visited = []  # Список відвіданих вершин
+    queue = deque([start_vertex])  # Черга для збереження вершин для обходу
+
+    while queue:
+        current_vertex = queue.popleft()  # Беремо першу вершину з черги
+        visited.append(current_vertex)
+
+        # Якщо задана кінцева вершина і вона вже відвідана, завершуємо обхід
+        if end_vertex and current_vertex == end_vertex:
+            break
+
+        # Додаємо сусідів поточної вершини, які ще не відвідані, у чергу
+        # neighbors = graph.get(current_vertex, [])
+        neighbors = graph[current_vertex]
+        for neighbor in neighbors:
+            if neighbor not in visited and neighbor not in queue:
+                queue.append(neighbor)
+
     return visited
 
 
@@ -55,3 +58,4 @@ if __name__ == "__main__":
 
     # Запуск алгоритму BFS
     print(f"{bfs_iterative(graph, 'A') = }")
+    print(f"{bfs_iterative(graph, 'A', 'D') = }")

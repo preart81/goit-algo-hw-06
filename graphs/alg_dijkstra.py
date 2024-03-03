@@ -7,7 +7,18 @@
 import heapq
 
 
-def dijkstra(graph, start_vertex, end_vertex=None):
+def dijkstra(graph, start_vertex, end_vertex=None) -> dict:
+    """Алгоритм Дейкстри
+
+    Параметри:
+        graph: dict - граф;
+        start_vertex - початкова вершина;
+        end_vertex - кінцева вершина.
+    Повертає dict:
+        distances:dict|int - відстані від початкової до всіх вершин, або відстань до заданої end_vertex.;
+        path:list - оптимальний шлях якщо задана end_vertex або None.
+
+    """
     # Ініціалізація відстаней і списку попередніх вершин
     distances = {vertex: float("infinity") for vertex in graph}
     distances[start_vertex] = 0
@@ -42,7 +53,8 @@ def dijkstra(graph, start_vertex, end_vertex=None):
         path.insert(0, start_vertex)
         return {"distance": distances[end_vertex], "path": path}
     else:
-        return {"distance": distances, "path": previous_vertices}
+        # return {"distance": distances, "path": previous_vertices}
+        return {"distance": distances, "path": None}
 
 
 if __name__ == "__main__":
@@ -57,5 +69,5 @@ if __name__ == "__main__":
 
     print(f"{graph = }")
 
-    result = dijkstra(graph, "A", "E")
-    print(result)
+    print(f"{dijkstra(graph, 'A') = }")
+    print(f"{dijkstra(graph, 'A', 'E') = }")
